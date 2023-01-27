@@ -107,7 +107,7 @@ main {
 .left {
   flex: 0 0 50%;
   padding: 8rem 4rem;
-  text-align: center;
+  text-align: right;
 }
 
 .guess {
@@ -126,7 +126,7 @@ main {
   background-color: var(--tertiary);
   display: block;
   padding: 2rem 3rem;
-  margin: 0 auto;
+  margin: 0 1rem 0 auto;
   border: 4px solid var(--tertiary);
 }
 
@@ -135,6 +135,7 @@ main {
 }
 
 .right {
+  flex: 0 0 50%;
   padding: 8rem 4rem;
   text-align: left;
 }
