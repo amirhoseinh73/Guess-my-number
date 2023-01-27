@@ -1,0 +1,157 @@
+@import "./google-fonts/load.css";
+
+:root {
+  --primary: #eeeeee;
+  --secondary: #666666;
+  --tertiary: #cccccc;
+  --dark: #333333;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Press Start 2P', sans-serif;
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+input,
+button {
+  all: unset;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+}
+
+.title {
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 3rem;
+  width: 100%;
+  flex: 0 0 100%;
+}
+
+.description {
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  margin: 2rem;
+}
+
+.btn-again {
+  background-color: var(--tertiary);
+  padding: 1.5rem 2rem;
+  font-size: 2rem;
+  margin: 2rem;
+  color: var(--dark);
+  position: absolute;
+  left: 0;
+}
+
+.btn-again:active {
+  margin: 2.3rem;
+}
+
+.number {
+  font-size: 4rem;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.number > span {
+  background-color: var(--tertiary);
+  color: var(--dark);
+  display: block;
+  margin: 0 auto;
+  width: 9rem;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number::after {
+  content: "";
+  width: 100%;
+  height: 6px;
+  background-color: var(--primary);
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left {
+  flex: 0 0 50%;
+  padding: 8rem 4rem;
+  text-align: center;
+}
+
+.guess {
+  border: 3px solid var(--tertiary);
+  padding: 1rem;
+  width: 18rem;
+  height: 6rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 5rem;
+}
+
+.btn-check {
+  font-size: 2rem;
+  color: var(--dark);
+  background-color: var(--tertiary);
+  display: block;
+  padding: 2rem 3rem;
+  margin: 0 auto;
+  border: 4px solid var(--tertiary);
+}
+
+.btn-check:active {
+  border-color: var(--secondary);
+}
+
+.right {
+  padding: 8rem 4rem;
+  text-align: left;
+}
+
+.alert {
+  margin-bottom: 4rem;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.high-score,
+.current-score {
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+.high-score > span,
+.current-score > span {
+  margin-left: 0rem;
+}
