@@ -4,5 +4,5 @@
 
 ## RUN
 
-1. clone
-2. run html or use live-server
+1. clone repository
+2. run index.html or use live-server
