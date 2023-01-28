@@ -1,7 +1,22 @@
 "use strict"
 
+const inputNumberHandler = e => {
+  if (
+    (e.which < 48 || e.which > 59) &&
+    (e.which < 96 || e.which > 105) &&
+    e.which !== 46 &&
+    e.which !== 8 &&
+    e.which !== 116 &&
+    e.which !== 37 &&
+    e.which !== 38 &&
+    e.which !== 39 &&
+    e.which !== 40
+  )
+    return e.preventDefault()
+}
+
 const generateRandomNumber = () => Math.trunc(Math.random() * 50) + 1
-let secretNumber = generateRandomNumber()
+let secretNumberState = generateRandomNumber()
 
 const check = () => {
   const input = document.querySelector(".guess")
@@ -21,31 +36,36 @@ const check = () => {
   )
     return
 
+  let scoreState = 20
+  let highScoreState = 0
   const checkHandler = () => {
     const userNumber = Number(input.value)
     if (!userNumber) return (alert.textContent = "🚫 No Number!")
 
-    const score = Number(currentScore.textContent)
-    if (userNumber === secretNumber) {
+    if (userNumber === secretNumberState) {
       document.body.style.backgroundColor = "#18c454cd"
       checkListener.removeEventListener("click", checkHandler)
-      if (score > Number(highScore.textContent)) highScore.textContent = score
-      numberField.textContent = secretNumber
-      return (alert.textContent = "🥳 Correct!")
-    } else if (userNumber < secretNumber) alert.textContent = "📈 Too low!"
-    else if (userNumber > secretNumber) alert.textContent = "📉 Too high!"
+      if (scoreState > highScoreState) highScoreState = scoreState
 
-    if (score !== 0) currentScore.textContent = score - 1
+      highScore.textContent = highScoreState
+      numberField.textContent = secretNumberState
+      numberField.style.width = "24rem"
+      alert.textContent = "🥳 Correct!"
+      return
+    } else if (userNumber < secretNumberState) alert.textContent = "📈 Too low!"
+    else if (userNumber > secretNumberState) alert.textContent = "📉 Too high!"
+
+    if (scoreState > 1) currentScore.textContent = --scoreState
+    else {
+      currentScore.textContent = --scoreState
+      alert.textContent = "💥 You loose!"
+      checkListener.removeEventListener("click", checkHandler)
+      document.body.style.backgroundColor = "orangered"
+    }
   }
 
   checkListener.addEventListener("click", checkHandler)
 
-  const inputNumberHandler = e => {
-    console.log(e.which)
-
-    if ((e.which < 48 || e.which > 59) && (e.which < 96 || e.which > 105))
-      return e.preventDefault()
-  }
   input.addEventListener("keydown", inputNumberHandler)
 
   const again = () => {
@@ -55,12 +75,14 @@ const check = () => {
       return
 
     const againHandler = () => {
-      secretNumber = generateRandomNumber()
+      secretNumberState = generateRandomNumber()
+      scoreState = 20
       input.value = ""
       alert.textContent = "Start guessing... "
-      currentScore.textContent = "20"
+      currentScore.textContent = scoreState
       checkListener.addEventListener("click", checkHandler)
       document.body.style.backgroundColor = ""
+      numberField.style.width = ""
       numberField.textContent = "?"
     }
 
